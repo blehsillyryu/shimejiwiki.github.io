@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts · Shimeji Simulation Wiki</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0C0C18;
+      color: #AFAFBE;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .wiki-card {
+      max-width: 1100px;
+      width: 100%;
+      background-color: #0C0C18;
+      border: 1px solid #3200BD;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem 3rem;
+      box-shadow: 0 8px 28px rgba(50, 0, 189, 0.15);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.2rem 1.5rem;
+      margin-bottom: 2.8rem;
+      border-bottom: 1px solid #3200BD;
+      padding-bottom: 1.8rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .icon-placeholder {
+      width: 48px;
+      height: 48px;
+      background: #0C0C18;
+      border: 2px dashed #5A4AFF;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: #5A4AFF;
+      flex-shrink: 0;
+    }
+
+    .icon-placeholder span {
+      opacity: 0.7;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .brand-text {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #AFAFBE;
+      border-left: 2px solid #3200BD;
+      padding-left: 1rem;
+      line-height: 1.2;
+    }
+    .brand-text small {
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #5A4AFF;
+      margin-left: 0.4rem;
+    }
+
+    .nav-center {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 1.8rem;
+      margin: 0 0.5rem;
+    }
+
+    .nav-center a {
+      color: #AFAFBE;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 450;
+      padding: 0.35rem 0.1rem;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    .nav-center a:hover {
+      color: #5A4AFF;
+      border-bottom-color: #5A4AFF;
+    }
+
+    .nav-center a.active {
+      color: #5A4AFF;
+      border-bottom-color: #5A4AFF;
+    }
+
+    .header-right {
+      width: 48px;
+      height: 48px;
+      opacity: 0.3;
+      border-radius: 12px;
+      border: 1px solid #3200BD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3200BD;
+      font-size: 0.7rem;
+    }
+
+    .page-content {
+      margin-top: 0.8rem;
+    }
+
+    .page-header {
+      border-left: 4px solid #5A4AFF;
+      padding-left: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.9rem;
+      font-weight: 600;
+      color: #AFAFBE;
+      letter-spacing: -0.5px;
+    }
+
+    .page-header h1 span {
+      color: #5A4AFF;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-top: 0.3rem;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .contact-card {
+      border: 1px solid #3200BD;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      transition: 0.2s;
+      text-align: center;
+    }
+
+    .contact-card:hover {
+      border-color: #5A4AFF;
+      box-shadow: 0 0 0 2px rgba(90, 74, 255, 0.1);
+    }
+
+    .contact-card .icon {
+      font-size: 2.8rem;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-card h3 {
+      color: #5A4AFF;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-card p {
+      color: #AFAFBE;
+      opacity: 0.7;
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-card a {
+      display: inline-block;
+      color: #AFAFBE;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid #5A4AFF;
+      padding-bottom: 0.15rem;
+      transition: 0.15s;
+    }
+
+    .contact-card a:hover {
+      color: #5A4AFF;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2.5rem;
+      color: #5A4AFF;
+      text-decoration: none;
+      border-bottom: 2px solid #5A4AFF;
+      padding-bottom: 0.2rem;
+      transition: 0.15s;
+    }
+
+    .back-link:hover {
+      color: #AFAFBE;
+      border-bottom-color: #AFAFBE;
+    }
+
+    .footer-links {
+      margin-top: 3.5rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid #3200BD;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem 3.5rem;
+    }
+
+    .footer-links a {
+      color: #5A4AFF;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 400;
+      transition: 0.15s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .footer-links a:hover {
+      color: #AFAFBE;
+      border-bottom-color: #AFAFBE;
+    }
+
+    @media (max-width: 700px) {
+      .wiki-card { padding: 1.8rem 1rem 2rem; border-radius: 2rem; }
+      .header { flex-direction: column; align-items: stretch; gap: 1.2rem; }
+      .brand { justify-content: center; }
+      .nav-center { justify-content: center; gap: 0.8rem 1.8rem; }
+      .nav-center a { font-size: 1.2rem; }
+      .header-right { display: none; }
+      .page-header h1 { font-size: 2.2rem; }
+      .contacts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wiki-card">
+    <header class="header">
+      <div class="brand">
+        <div class="icon-placeholder" aria-label="иконка">
+          <span>🖼️</span>
+        </div>
+        <div class="brand-text">
+          Wiki<span style="color:#5A4AFF;">.</span><small>contacts</small>
+        </div>
+      </div>
+
+      <nav class="nav-center">
+        <a href="index.html">Main</a>
+        <a href="news.html">News</a>
+        <a href="contacts.html" class="active">Contacts</a>
+      </nav>
+
+      <div class="header-right" aria-hidden="true">⏺</div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <h1>📬 <span>Contacts</span></h1>
+        <p>Get in touch with the community</p>
+      </div>
+
+      <div class="contacts-grid">
+        <div class="contact-card">
+          <span class="icon">🐦</span>
+          <h3>Twitter / X</h3>
+          <p>Follow for updates and announcements</p>
+          <a href="#">@ShimejiSim</a>
+        </div>
+
+        <div class="contact-card">
+          <span class="icon">💬</span>
+          <h3>Discord</h3>
+          <p>Join our community server</p>
+          <a href="#">discord.gg/shimeji</a>
+        </div>
+
+        <div class="contact-card">
+          <span class="icon">📧</span>
+          <h3>Email</h3>
+          <p>For inquiries and suggestions</p>
+          <a href="#">wiki@shimeji-sim.com</a>
+        </div>
+
+        <div class="contact-card">
+          <span class="icon">🖥️</span>
+          <h3>GitHub</h3>
+          <p>Contribute to the wiki project</p>
+          <a href="#">github.com/shimeji-wiki</a>
+        </div>
+
+        <div class="contact-card">
+          <span class="icon">📖</span>
+          <h3>Fandom</h3>
+          <p>Original wiki on Fandom</p>
+          <a href="https://shimeji-simulation.fandom.com/wiki/Shimeji_Simulation_Wiki" target="_blank">Visit Fandom →</a>
+        </div>
+
+        <div class="contact-card">
+          <span class="icon">🌐</span>
+          <h3>Reddit</h3>
+          <p>Community discussions and theories</p>
+          <a href="#">r/ShimejiSimulation</a>
+        </div>
+      </div>
+
+      <a href="index.html" class="back-link">← Back to Main</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Main</a>
+      <a href="news.html">News</a>
+      <a href="contacts.html">Contacts</a>
+      <a href="#" style="color: #
