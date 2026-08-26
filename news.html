@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News · Shimeji Simulation Wiki</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0C0C18;
+      color: #AFAFBE;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .wiki-card {
+      max-width: 1100px;
+      width: 100%;
+      background-color: #0C0C18;
+      border: 1px solid #3200BD;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem 3rem;
+      box-shadow: 0 8px 28px rgba(50, 0, 189, 0.15);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.2rem 1.5rem;
+      margin-bottom: 2.8rem;
+      border-bottom: 1px solid #3200BD;
+      padding-bottom: 1.8rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .icon-placeholder {
+      width: 48px;
+      height: 48px;
+      background: #0C0C18;
+      border: 2px dashed #5A4AFF;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: #5A4AFF;
+      flex-shrink: 0;
+    }
+
+    .icon-placeholder span {
+      opacity: 0.7;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .brand-text {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #AFAFBE;
+      border-left: 2px solid #3200BD;
+      padding-left: 1rem;
+      line-height: 1.2;
+    }
+    .brand-text small {
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #5A4AFF;
+      margin-left: 0.4rem;
+    }
+
+    .nav-center {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 1.8rem;
+      margin: 0 0.5rem;
+    }
+
+    .nav-center a {
+      color: #AFAFBE;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 450;
+      padding: 0.35rem 0.1rem;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    .nav-center a:hover {
+      color: #5A4AFF;
+      border-bottom-color: #5A4AFF;
+    }
+
+    .nav-center a.active {
+      color: #5A4AFF;
+      border-bottom-color: #5A4AFF;
+    }
+
+    .header-right {
+      width: 48px;
+      height: 48px;
+      opacity: 0.3;
+      border-radius: 12px;
+      border: 1px solid #3200BD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3200BD;
+      font-size: 0.7rem;
+    }
+
+    .page-content {
+      margin-top: 0.8rem;
+    }
+
+    .page-header {
+      border-left: 4px solid #5A4AFF;
+      padding-left: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.9rem;
+      font-weight: 600;
+      color: #AFAFBE;
+      letter-spacing: -0.5px;
+    }
+
+    .page-header h1 span {
+      color: #5A4AFF;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-top: 0.3rem;
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .news-item {
+      border: 1px solid #3200BD;
+      border-radius: 1.5rem;
+      padding: 1.8rem 2rem;
+      transition: 0.2s;
+    }
+
+    .news-item:hover {
+      border-color: #5A4AFF;
+      box-shadow: 0 0 0 2px rgba(90, 74, 255, 0.1);
+    }
+
+    .news-item .date {
+      color: #5A4AFF;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .news-item h2 {
+      color: #AFAFBE;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .news-item p {
+      color: #AFAFBE;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    .news-item a {
+      display: inline-block;
+      margin-top: 0.8rem;
+      color: #5A4AFF;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: 0.15s;
+    }
+
+    .news-item a:hover {
+      border-bottom-color: #5A4AFF;
+      color: #AFAFBE;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #5A4AFF;
+      text-decoration: none;
+      border-bottom: 2px solid #5A4AFF;
+      padding-bottom: 0.2rem;
+      transition: 0.15s;
+    }
+
+    .back-link:hover {
+      color: #AFAFBE;
+      border-bottom-color: #AFAFBE;
+    }
+
+    .footer-links {
+      margin-top: 3.5rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid #3200BD;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem 3.5rem;
+    }
+
+    .footer-links a {
+      color: #5A4AFF;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 400;
+      transition: 0.15s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .footer-links a:hover {
+      color: #AFAFBE;
+      border-bottom-color: #AFAFBE;
+    }
+
+    @media (max-width: 700px) {
+      .wiki-card { padding: 1.8rem 1rem 2rem; border-radius: 2rem; }
+      .header { flex-direction: column; align-items: stretch; gap: 1.2rem; }
+      .brand { justify-content: center; }
+      .nav-center { justify-content: center; gap: 0.8rem 1.8rem; }
+      .nav-center a { font-size: 1.2rem; }
+      .header-right { display: none; }
+      .page-header h1 { font-size: 2.2rem; }
+      .news-item { padding: 1.2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wiki-card">
+    <header class="header">
+      <div class="brand">
+        <div class="icon-placeholder" aria-label="иконка">
+          <span>🖼️</span>
+        </div>
+        <div class="brand-text">
+          Wiki<span style="color:#5A4AFF;">.</span><small>news</small>
+        </div>
+      </div>
+
+      <nav class="nav-center">
+        <a href="index.html">Main</a>
+        <a href="news.html" class="active">News</a>
+        <a href="contacts.html">Contacts</a>
+      </nav>
+
+      <div class="header-right" aria-hidden="true">⏺</div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <h1>📰 <span>News</span></h1>
+        <p>Latest updates and announcements</p>
+      </div>
+
+      <div class="news-list">
+        <div class="news-item">
+          <div class="date">📅 August 26, 2026</div>
+          <h2>Wiki Relaunch</h2>
+          <p>As the wiki has been started off with me as the main contributor  - it's finally more organized and stuff.</p>
+          <a href="#">Read more →</a>
+        </div>
+
+        <div class="news-item">
+          <div class="date">📅 August 20, 2026</div>
+          <h2>TOTAL NEWS 26.08.2026</h2>
+          <p>None</p>
+          <a href="#">Read more →</a>
+        </div>
+
+        <div class="news-item">
+          <div class="date">📅 August 10, 2026</div>
+          <h2>Wiki Contributors Wanted</h2>
+          <p>We're looking for contributors to help expand the wiki. If you're interested, please reach out via the Contacts page.</p>
+          <a href="contacts.html">Contact us →</a>
+        </div>
+      </div>
+
+      <a href="index.html" class="back-link">← Back to Main</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Main</a>
+      <a href="news.html">News</a>
+      <a href="contacts.html">Contacts</a>
+      <a href="#" style="color: #3200BD; opacity:0.7;">•</a>
+      <a href="#" style="color: #5A4AFF;">↻</a>
+    </div>
+  </div>
+</body>
+</html>
