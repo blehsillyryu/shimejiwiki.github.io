@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Main · Dark Violet</title>
+  <title>Shimeji Simulation Wiki</title>
   <style>
     * {
       margin: 0;
@@ -23,7 +23,6 @@
       padding: 1.5rem 1rem 3rem;
     }
 
-    /* главный контейнер — имитация вики-карточки */
     .wiki-card {
       max-width: 1100px;
       width: 100%;
@@ -35,7 +34,6 @@
       transition: box-shadow 0.2s;
     }
 
-    /* ===== ШАПКА ===== */
     .header {
       display: flex;
       align-items: center;
@@ -47,7 +45,6 @@
       padding-bottom: 1.8rem;
     }
 
-    /* левая часть — иконка + лого (заглушка) */
     .brand {
       display: flex;
       align-items: center;
@@ -94,7 +91,6 @@
       margin-left: 0.4rem;
     }
 
-    /* навигация — по центру (flex-grow) */
     .nav-center {
       display: flex;
       flex-wrap: wrap;
@@ -120,7 +116,11 @@
       border-bottom-color: #5A4AFF;
     }
 
-    /* маленькая заглушка справа (можно расширить) */
+    .nav-center a.active {
+      color: #5A4AFF;
+      border-bottom-color: #5A4AFF;
+    }
+
     .header-right {
       width: 48px;
       height: 48px;
@@ -136,7 +136,6 @@
       font-size: 0.7rem;
     }
 
-    /* ===== ОСНОВНОЙ КОНТЕНТ (Main) ===== */
     .main-content {
       display: flex;
       flex-direction: column;
@@ -171,7 +170,6 @@
       opacity: 0.85;
     }
 
-    /* карточки-секции (акценты) */
     .features {
       display: flex;
       flex-wrap: wrap;
@@ -222,7 +220,6 @@
       color: #AFAFBE;
     }
 
-    /* ссылки в тексте */
     .inline-link {
       color: #5A4AFF;
       text-decoration: none;
@@ -235,7 +232,40 @@
       border-bottom-color: #AFAFBE;
     }
 
-    /* футер с дополнительными ссылками (просто для красоты) */
+    .bottom-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2.5rem;
+      padding: 0.2rem 0 0.2rem 0.2rem;
+      border-top: 1px solid #3200BD;
+      padding-top: 1.8rem;
+      margin-top: 0.2rem;
+    }
+
+    .bottom-links a {
+      color: #AFAFBE;
+      text-decoration: none;
+      font-weight: 400;
+      transition: 0.15s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .bottom-links a:hover {
+      color: #5A4AFF;
+      border-bottom-color: #5A4AFF;
+    }
+
+    .bottom-links a.accent {
+      color: #5A4AFF;
+      border-bottom: 2px solid #5A4AFF;
+      padding-bottom: 0.15rem;
+    }
+
+    .bottom-links a.dotted {
+      color: #5A4AFF;
+      border-bottom: 1px dotted #5A4AFF;
+    }
+
     .footer-links {
       margin-top: 3.5rem;
       padding-top: 1.8rem;
@@ -260,40 +290,32 @@
       border-bottom-color: #AFAFBE;
     }
 
-    /* адаптив */
     @media (max-width: 700px) {
       .wiki-card {
         padding: 1.8rem 1rem 2rem;
         border-radius: 2rem;
       }
-
       .header {
         flex-direction: column;
         align-items: stretch;
         gap: 1.2rem;
       }
-
       .brand {
         justify-content: center;
       }
-
       .nav-center {
         justify-content: center;
         gap: 0.8rem 1.8rem;
       }
-
       .nav-center a {
         font-size: 1.2rem;
       }
-
       .header-right {
         display: none;
       }
-
       .hero h1 {
         font-size: 2.2rem;
       }
-
       .features {
         flex-direction: column;
       }
@@ -317,11 +339,8 @@
 </head>
 <body>
   <div class="wiki-card">
-
-    <!-- ШАПКА: иконка (заглушка) + навигация -->
     <header class="header">
       <div class="brand">
-        <!-- место под иконку, картинку добавите позже -->
         <div class="icon-placeholder" aria-label="иконка">
           <span>🖼️</span>
         </div>
@@ -330,69 +349,61 @@
         </div>
       </div>
 
-      <!-- навигация по центру: news / contacts (можно добавить ещё) -->
       <nav class="nav-center">
-        <a href="#" class="active-link">Main</a>
-        <a href="#">News</a>
-        <a href="#">Contacts</a>
-        <!-- заглушка для доп. пунктов (опционально) -->
-        <a href="#" style="opacity:0.4; pointer-events:none; border-bottom: none;">•</a>
+        <a href="index.html" class="active">Main</a>
+        <a href="news.html">News</a>
+        <a href="contacts.html">Contacts</a>
       </nav>
 
       <div class="header-right" aria-hidden="true">⏺</div>
     </header>
 
-    <!-- ОСНОВНОЙ БЛОК — страница Main -->
     <div class="main-content">
       <section class="hero">
-        <h1>Main <span>·</span> вики</h1>
+        <h1>Main <span>·</span> wiki</h1>
         <p>
-          Добро пожаловать на главную страницу. 
-          Здесь собраны ключевые разделы, новости и контакты.
+          Welcome to the main page. Here you may find everything regarding 
+          <a href="https://shimeji-simulation.fandom.com/wiki/Shimeji_Simulation_Wiki" 
+             class="inline-link" target="_blank">Shimeji Simulation Wiki</a>.
           <br>
-          <a href="#" class="inline-link">исследовать</a> или 
-          <a href="#" class="inline-link">начать</a>.
+          <a href="news.html" class="inline-link">explore news</a> or 
+          <a href="contacts.html" class="inline-link">contact us</a>.
         </p>
       </section>
 
-      <!-- карточки с акцентами и ссылками -->
       <div class="features">
         <div class="feature-item">
           <h3>📰 News</h3>
-          <p>Последние обновления, анонсы и события.</p>
-          <a href="#">Перейти к новостям →</a>
+          <p>Latest updates, announcements and events.</p>
+          <a href="news.html">Read News →</a>
         </div>
         <div class="feature-item">
           <h3>📬 Contacts</h3>
-          <p>Связь, поддержка, социальные сети.</p>
-          <a href="#">Контакты →</a>
+          <p>Get in touch, support, social media.</p>
+          <a href="contacts.html">Contact →</a>
         </div>
         <div class="feature-item">
-          <h3>⚡ Акцент</h3>
-          <p>Главные ссылки и быстрые действия.</p>
-          <a href="#">Подробнее</a>
+          <h3>⚡ Wiki</h3>
+          <p>Explore the Shimeji Simulation universe.</p>
+          <a href="https://shimeji-simulation.fandom.com/wiki/Shimeji_Simulation_Wiki" target="_blank">Visit Fandom →</a>
         </div>
       </div>
 
-      <!-- дополнительный блок с явными ссылками на news / contacts -->
-      <div style="display: flex; flex-wrap: wrap; gap: 1.2rem 2.5rem; padding: 0.2rem 0 0.2rem 0.2rem; border-top: 1px solid #3200BD; padding-top: 1.8rem; margin-top: 0.2rem;">
-        <a href="#" style="color: #5A4AFF; text-decoration: none; font-weight: 500; border-bottom: 2px solid #5A4AFF; padding-bottom: 0.15rem;">News</a>
-        <a href="#" style="color: #AFAFBE; text-decoration: none; font-weight: 400; transition: 0.15s; border-bottom: 1px solid transparent;">Contacts</a>
-        <a href="#" style="color: #AFAFBE; text-decoration: none; font-weight: 400; transition: 0.15s; border-bottom: 1px solid transparent;">Документация</a>
-        <a href="#" style="color: #5A4AFF; text-decoration: none; font-weight: 400; border-bottom: 1px dotted #5A4AFF;">GitHub</a>
+      <div class="bottom-links">
+        <a href="news.html" class="accent">News</a>
+        <a href="contacts.html">Contacts</a>
+        <a href="https://shimeji-simulation.fandom.com/wiki/Shimeji_Simulation_Wiki" target="_blank">Documentation</a>
+        <a href="#" class="dotted">GitHub</a>
       </div>
     </div>
 
-    <!-- нижняя часть — доп. навигация, просто для завершённости -->
     <div class="footer-links">
-      <a href="#">Main</a>
-      <a href="#">News</a>
-      <a href="#">Contacts</a>
+      <a href="index.html">Main</a>
+      <a href="news.html">News</a>
+      <a href="contacts.html">Contacts</a>
       <a href="#" style="color: #3200BD; opacity:0.7;">•</a>
       <a href="#" style="color: #5A4AFF;">↻</a>
     </div>
-
   </div>
-  <!-- маленькое примечание: иконка слева сверху (заглушка) уже на месте -->
 </body>
 </html>
